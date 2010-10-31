@@ -23,8 +23,8 @@
   </style>
 </head>
 <body>
-  <h1>Pre-serialze</h1>
-  <div id="pre_serialze">
+  <h1>Normal</h1>
+  <div id="pre_serialize">
     <h2 name="tea_list">List of my favourite teas</h2>
     <img src="images/om.jpeg">
     <!-- NOTE: This image now gets serialized. -->
@@ -39,11 +39,11 @@
   </div>
   <button id="serialize">Serialize!</button>
 
-  <h1>Post-serialze</h1>
-  <div id="post_serialze">Nothing here yet!</div>
+  <h1>Flattened</h1>
+  <div id="post_serialize">Nothing here yet!</div>
   
-  <h1>Chunk-serialze</h1>
-  <div id="chunk_serialze">Nothing here yet!</div>
+  <h1>Chunked</h1>
+  <div id="chunk_serialize">Nothing here yet!</div>
 
 <script src="external/jquery-1.4.2.js"></script>
 <script src="lib/serialize.js"></script>
@@ -52,9 +52,9 @@
     // Add events.
     $("#serialize").click(function() {
       // Grab the elems.
-      var preDiv   = $("#pre_serialze")[0];
-      var postDiv  = $("#post_serialze")[0];
-      var chunkDiv = $("#chunk_serialze")[0];
+      var preDiv   = $("#pre_serialize")[0];
+      var postDiv  = $("#post_serialize")[0];
+      var chunkDiv = $("#chunk_serialize")[0];
 
       // Straight flatten the DOM.
       new DOMSerializer(preDiv).flatten(function(html) {
