@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>Test Serialze</title>
+  <style>
+    #pre_serialze {
+border-style:solid;
+      border-width:1px;
+      border-color: red;
+    }
+    
+    #post_serialze {
+      border-style:solid;
+      border-width:1px;
+      border-color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pre-serialze</h1>
+  <div id="pre_serialze">
+    <h2 name="tea_list">List of my favourite teas</h2>
+    <img src="images/om.jpeg">
+    <ul>
+      <li>Earl Grey</li>
+      <li>Yorkshire Tea</li>
+      <li>Green Tea</li>
+      <li>Darjeeling</li>
+    </ul>
+    <!-- TODO: Make this serializable (is that a word???) -->
+    <div style="background-image:url('images/om.jpeg');">Hi!</div>
+  </div>
+  
+  <div id="test_serialze">
+    <h2>A tag and a image</h2>
+    <img src="images/om.jpeg">
+  </div>
+  
+  <button id="serialize">Serialize!</button>
+
+  <h1>Post-serialze</h1>
+  <div id="post_serialze">Nothing here yet!</div>
+
+<script src="external/jquery-1.4.2.js"></script>
+<script src="lib/serialize.js"></script>
+<script>
+  $(function() {
+    // Add events.
+    $("#serialize").click(function() {
+      var preDiv  = document.getElementById("pre_serialze");
+      var postDiv = document.getElementById("post_serialze");
+
+      /*
+      new DOMSerializer(preDiv).flatten(function(html) {
+          postDiv.innerHTML = html;
+      });
+      */
+      
+      new DOMSerializer(document.getElementById("test_serialze")).flatten(function(html) {
+        console.log(html);
+      });
+    });
+  })
+
+</script>
+</body>
+</html>
+
+
+
