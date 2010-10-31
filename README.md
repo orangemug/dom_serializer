@@ -11,17 +11,18 @@ Plans to add the following:
 
 ## Example
 HTML Before:
-  <div id="test_serialze">
-    <h2>A tag and a image</h2>
-    <img src="images/om.jpeg">
-  </div>
+	<div id="test_serialze">
+		<h2>A tag and a image</h2>
+		<img src="images/om.jpeg">
+	</div>
     
 Javascript:
-  new DOMSerializer(document.getElementById("test_serialze")).flatten(function(html) {
-    console.log(html);
-  });
+	new DOMSerializer(document.getElementById("test_serialze")).flatten(function(html) {
+		console.log(html);
+	});
 
 
 Generated flattened html:
-  <h2>A tag and a image</h2>
-  <img src="data:image/png;base64,iVBORw0........uQmCC">
+	<h2>A tag and a image</h2>
+	<img src="data:image/png;base64,iVBORw0........uQmCC">
+
