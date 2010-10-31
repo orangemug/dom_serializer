@@ -1,5 +1,6 @@
 # dom_serializer
 Serialize a dom for use offline, this should flatten the dom(innerHTML) as well flattening all images in the DOM tree to data URLs.
+This is not entended for use by dynamic pages, any dynamic content should be stripped out before processing.
 
 
 ## Todo
