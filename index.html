@@ -57,12 +57,10 @@
       var chunkDiv = $("#chunk_serialze")[0];
 
       // Straight flatten the DOM.
-      /*
       new DOMSerializer(preDiv).flatten(function(html) {
         console.info("Flattened the dom");
         postDiv.innerHTML = html;
-      });
-      */
+      });      
       
       // Storing the output into chunks, this would be for perisistance storage
       // where we have a max size per slot.
