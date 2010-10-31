@@ -3,7 +3,7 @@
   <title>dom_serializer</title>
   <style>
     #pre_serialze {
-border-style:solid;
+      border-style:solid;
       border-width:1px;
       border-color: red;
     }
@@ -13,6 +13,13 @@ border-style:solid;
       border-width:1px;
       border-color: green;
     }
+    
+    #chunk_serialze {
+      border-style:solid;
+      border-width:1px;
+      border-color: yellow;
+    }
+    
   </style>
 </head>
 <body>
@@ -20,19 +27,23 @@ border-style:solid;
   <div id="pre_serialze">
     <h2 name="tea_list">List of my favourite teas</h2>
     <img src="images/om.jpeg">
-    <ul>
+    <!-- NOTE: This image now gets serialized. -->
+    <ul style="list-style-image:url('images/bullet.jpg');">
       <li>Earl Grey</li>
       <li>Yorkshire Tea</li>
       <li>Green Tea</li>
       <li>Darjeeling</li>
     </ul>
-    <!-- TODO: Make this serializable (is that a word???) -->
+    <!-- NOTE: This image now gets serialized. -->
     <div style="background-image:url('images/om.jpeg');">Hi!</div>
   </div>
   <button id="serialize">Serialize!</button>
 
   <h1>Post-serialze</h1>
   <div id="post_serialze">Nothing here yet!</div>
+  
+  <h1>Chunk-serialze</h1>
+  <div id="chunk_serialze">Nothing here yet!</div>
 
 <script src="external/jquery-1.4.2.js"></script>
 <script src="lib/serialize.js"></script>
@@ -40,11 +51,30 @@ border-style:solid;
   $(function() {
     // Add events.
     $("#serialize").click(function() {
-      var preDiv  = document.getElementById("pre_serialze");
-      var postDiv = document.getElementById("post_serialze");
-      
+      // Grab the elems.
+      var preDiv   = $("#pre_serialze")[0];
+      var postDiv  = $("#post_serialze")[0];
+      var chunkDiv = $("#chunk_serialze")[0];
+
+      // Straight flatten the DOM.
+      /*
       new DOMSerializer(preDiv).flatten(function(html) {
-          postDiv.innerHTML = html;
+        console.info("Flattened the dom");
+        postDiv.innerHTML = html;
+      });
+      */
+      
+      // Storing the output into chunks, this would be for perisistance storage
+      // where we have a max size per slot.
+      var htmlChunks = "";      
+      new DOMSerializer(preDiv).chunk(50,{
+        chunk: function(idx,htmlChunk) {          
+          htmlChunks += htmlChunk;
+        },
+        complete: function() {          
+          console.info("Split dom into chunks");
+          chunkDiv.innerHTML = htmlChunks;
+        }
       });      
     });
   })
